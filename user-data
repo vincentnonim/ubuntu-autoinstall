@@ -1,5 +1,7 @@
 #cloud-config
-# autoinstall ds=nocloud-net;s=https://h.minon.be/
+# Insert following line in grub linux cmd line before ---
+# (some times need to escape the ; char)
+# autoinstall ds=nocloud-net\;s=https://h.minon.be/
 autoinstall:
   version: 1
   apt:
@@ -27,8 +29,7 @@ autoinstall:
   ssh:
     allow-pw: false
     authorized-keys: 
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH66Wv6Wv9RaPbB9Ss6ZAMknZH6X6sZGzvUMG1sJEdSh vincent
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJIYW5oEX/+scf5dZgyRl9jgTZs3bV46+7cKnJb5fhqa root
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJIYW5oEX/+scf5dZgyRl9jgTZs3bV46+7cKnJb5fhqa ansible
     install-server: true
   storage:
     config:
@@ -108,5 +109,4 @@ autoinstall:
         lock_passwd: true
         shell: /bin/bash
         ssh_authorized_keys:
-          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH66Wv6Wv9RaPbB9Ss6ZAMknZH6X6sZGzvUMG1sJEdSh vincent
-          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJIYW5oEX/+scf5dZgyRl9jgTZs3bV46+7cKnJb5fhqa root
+          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJIYW5oEX/+scf5dZgyRl9jgTZs3bV46+7cKnJb5fhqa ansible
