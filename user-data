@@ -1,7 +1,7 @@
 #cloud-config
 # Insert following line in grub linux cmd line before ---
 # (some times need to escape the ; char)
-# autoinstall ds=nocloud-net\;s=https://h.minon.be/
+# autoinstall ds=nocloud-net\;s=http://container_ip/
 autoinstall:
   version: 1
   apt:
@@ -100,6 +100,8 @@ autoinstall:
       id: mount-0
   packages:
     - python3-apt
+  late-commands:
+    - curtin in-target --target=/target -- dpkg-reconfigure openssh-server
 
   user-data:
     users:
@@ -110,3 +112,9 @@ autoinstall:
         shell: /bin/bash
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJIYW5oEX/+scf5dZgyRl9jgTZs3bV46+7cKnJb5fhqa ansible
+    write_files:
+    - path: /root/.ssh/authorized_keys
+      content: |
+        ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJIYW5oEX/+scf5dZgyRl9jgTZs3bV46+7cKnJb5fhqa root
+      owner: 'root:root'
+      permissions: '0600'
