@@ -1,8 +1,10 @@
 # ubuntu-autoinstall
 
+Clone this repository
+
 Run container to host files
 ```
-docker run -it --rm -p 80:80 -v $PWD/html:/usr/share/nginx/html -d nginx
+docker run -it --rm -p 80:80 -v $PWD/:/usr/share/nginx/html -d nginx
 ```
 
 Insert following line in grub linux cmd line before ---
