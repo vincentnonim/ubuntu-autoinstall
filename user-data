@@ -110,11 +110,5 @@ autoinstall:
         groups: users, admin
         lock_passwd: true
         shell: /bin/bash
-        ssh_authorized_keys:
-          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJIYW5oEX/+scf5dZgyRl9jgTZs3bV46+7cKnJb5fhqa ansible
-    write_files:
-    - path: /root/.ssh/authorized_keys
-      content: |
-        ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJIYW5oEX/+scf5dZgyRl9jgTZs3bV46+7cKnJb5fhqa root
-      owner: 'root:root'
-      permissions: '0600'
+        ssh_import_id:
+          - lp:vincentnonim
